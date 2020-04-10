@@ -1,0 +1,93 @@
+@import '../fonts';
+@import '../allColor';
+
+
+.header
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    background: $main-blue;
+    box-shadow: 0 2px 10px 2px $box-shadow-blue;
+
+    &-wrapper
+        width: 100%;
+        max-width: 1200px;
+        padding: 5px 10px;
+
+    &-block
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        width: 100%;
+
+        &-logo
+            font-family: $font_Nosifer;
+            color: $white;
+            font-size: 35px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 1s;
+
+            &:hover
+                color: $orange;
+    
+        &-login
+            font-family: $font_Baskerville;
+            color: $white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+
+            .login,
+            .logout,
+            .logout-girl
+                width: 40px;
+                height: 40px;
+                display: block;
+                position: relative;
+                transition: all .6s;
+
+
+            .login
+                background: url('../icon/login.svg') no-repeat;
+                background-size: 100% 100%;
+                
+                &:hover
+                    background: url('../icon/login-hover.svg') no-repeat;
+                    background-size: 100% 100%;
+
+            .logout
+                background: url('../icon/logout.svg') no-repeat;
+                background-size: 100% 100%;
+               
+                &:hover
+                    background: url('../icon/logout-hover.svg') no-repeat;
+                    background-size: 100% 100%;
+            
+            .logout-girl
+                background: url('../icon/logout-girl.svg') no-repeat;
+                background-size: 100% 100%;
+               
+                &:hover
+                    background: url('../icon/logout-girl-hover.svg') no-repeat;
+                    background-size: 100% 100%;
+
+    
+        &-links
+            display: flex;
+            justify-content: space-around;
+            font-family: $font_Baskerville;
+            color: $white;
+            font-size: 20px;
+            font-weight: 700; 
+
+            span
+                padding: 0 5px;
+                cursor: pointer;
+                transition: all .3s;
+
+                &:hover
+                    color: $orange;
+

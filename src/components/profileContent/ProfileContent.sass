@@ -1,0 +1,29 @@
+@import '../../fonts';
+@import '../../allColor';
+
+.profile-drag-drop
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    &-title
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        background: $darkcyan;
+        cursor: pointer;
+        transition: all .6s;
+
+        &:hover h3
+            color: $gold;
+    
+        h3
+            text-align: center;
+            color: $white;
+            font-family: $font_Baskerville;
+            font-size: 20px;
+            margin: 0px;
+            transition: all .6s;
+

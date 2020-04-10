@@ -1,0 +1,69 @@
+@import '../../fonts';
+@import '../../allColor';
+
+.mainMenu
+    display: block;
+    position: fixed;
+    z-index: 20;
+    top: 15%;
+    left: 0px;
+    background: $darkcyan;
+    box-shadow: 0 0px 1px 0px $text-dark;
+    font-family: $font_Lato;
+    width: 250px;
+    transition: all .6s;
+    
+
+    .menu
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 15px;
+
+        &-item
+            position: relative;
+            width: 95%;
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid $white;
+            transition: all .6s;
+
+            &:hover
+                background: $teal;
+
+            &-label
+                position: absolute;
+                z-index: 2;
+                top: -15px;
+                right: 5px;
+                
+                a
+                    text-decoration: none;
+                    background: $darkcyan;
+                    font-family: $font_Baskerville;
+                    font-size: 22px;
+                    color: $white;
+                    transition: all .6s;
+                    
+                    &:hover
+                            color: $gold;
+
+                   
+            &-content
+                width: 100%
+                display: flex;
+                flex-direction: column;
+                padding: 15px 5px;
+                
+                a
+                    text-decoration: none;
+                    cursor: pointer;
+                    color: $white;
+                    font-size: 20px;
+                    transition: all .3s;
+
+                    &:hover
+                            color: $gold;
+
+
+            
