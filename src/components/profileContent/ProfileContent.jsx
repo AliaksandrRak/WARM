@@ -44,9 +44,9 @@ class ProfileContentClass extends React.Component {
         if (!result.destination) {
             return;
         }
-        if (result.source.droppableId !== result.destination.droppableId) {
-            return;
-        }
+        // if (result.source.droppableId !== result.destination.droppableId) {
+        //     return;
+        // }
         
         const items = reorder(
             result.source,
@@ -62,10 +62,10 @@ class ProfileContentClass extends React.Component {
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <div className="profile-drag-drop">
-                <ProfileDropableContainer items={this.state.container} array={this.state.droppable}  id="container" />
-                    {/* <ProfileDropableElement title="First name" items={this.state.droppable} id="droppable" />
+                {/* <ProfileDropableContainer items={this.state.container} array={this.state.droppable}  id="container" /> */}
+                    <ProfileDropableElement title="First name" items={this.state.droppable} id="droppable" />
                     <ProfileDropableElement title="Last name" items={this.state.droppable2} id="droppable2" />
-                    <ProfileDropableElement title="Age" items={this.state.droppable3} id="droppable3" /> */}
+                    <ProfileDropableElement title="Age" items={this.state.droppable3} id="droppable3" />
                 </div>
             </DragDropContext>
         );

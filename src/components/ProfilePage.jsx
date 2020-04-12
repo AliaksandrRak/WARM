@@ -14,7 +14,7 @@ function ProfilePageFunction(props) {
   return (
     <div className="profile">
       <MainMenu
-        numberElementsRender={roleAdmin}
+        numberElementsRender={role1}
       />
 
       <div className="profile-wrapper">
