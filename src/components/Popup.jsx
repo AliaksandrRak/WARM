@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {set_open} from '../reducers/Action'
+
 import './Popup.sass';
 
 
@@ -10,11 +10,11 @@ import './Popup.sass';
 function PopupFunction(props) {
   
   return (
-    <div className={`background-popup ${props.storeState.isOpen ? "openPopup":"closePopup"} ${props.isWhite?"whiteBackground":"blackBackground"}`} onMouseDown={()=>props.dispatch(set_open())}>
+    <div className={`background-popup ${props.isOpen ? "openPopup":"closePopup"} ${props.isWhite?"whiteBackground":"blackBackground"}`} onMouseDown={props.onClose}>
       <div className="popup" onMouseDown={(e)=>e.stopPropagation()}>
         <div className="popup-header">
           <Link className="popup-header-logo" to="/home">{props.logo}</Link>
-          <span className="popup-header-close" onClick={()=>props.dispatch(set_open())}>
+          <span className="popup-header-close" onClick={props.onClose}>
             {props.close}
         </span>
         </div>

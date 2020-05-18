@@ -1,6 +1,7 @@
 import {
     SET_OPEN,
     SET_LOGIN,
+    SET_OPEN_CARD,
 
 } from './Action';
 
@@ -8,6 +9,9 @@ import {
 const initialState = {
     isOpen: false,
     isLogIn: false,
+    isOpenCard: false,
+    companiesName: 'company',
+    projectName: '',
 };
 
 export const AppReduser = (state = initialState, action) => {
@@ -16,7 +20,6 @@ export const AppReduser = (state = initialState, action) => {
             let newState = {
                 ...state
             };
-            debugger
             newState.isOpen = !newState.isOpen;
             return newState;
         }
@@ -26,6 +29,14 @@ export const AppReduser = (state = initialState, action) => {
             };
             debugger
             newState.isLogIn = !newState.isLogIn;
+            return newState;
+        }
+        case SET_OPEN_CARD: {
+            let newState = {
+                ...state
+            };
+            debugger
+            newState.isOpenCard = !newState.isOpenCard;
             return newState;
         }
 

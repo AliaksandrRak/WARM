@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import './ProfileContent.sass'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { reorder, getItemStyle, getListStyle } from './DragDrobSettings'
+import { reorder, getItemStyle, getListStyle } from './DragDrobSettings';
+import {set_open_card} from '../../reducers/Action'
 
 function ProfileDropableElementFunction(props) {
 
@@ -25,7 +26,7 @@ function ProfileDropableElementFunction(props) {
                             index={index}
                         >
                             {(provided, snapshot) => (
-                                <div>
+                                <div className="card" onClick={() => props.dispatch(set_open_card())}>
                                     <div
                                         ref={provided.innerRef}
                                         {...provided.dragHandleProps}
@@ -35,7 +36,19 @@ function ProfileDropableElementFunction(props) {
                                             snapshot.isDragging
                                         )}
                                     >
-                                        {item.content}
+                                        <div className="card-title">
+                                            <span>{item.content}</span>
+                                        </div>
+
+                                        <div className="card-tags">
+                                            {item.tags.map((tag, number) =>
+                                            number < 3 &&
+                                                <div className="card-tag">
+                                                    <span>{tag}</span>
+                                                </div>
+                                            )}
+                                        </div>
+
                                     </div>
                                     {provided.placeholder}
                                 </div>

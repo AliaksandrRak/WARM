@@ -12,6 +12,7 @@ function MainMenuFunction(props) {
 
   return (
     <div className="mainMenu">
+      <span className="mainMenu-icon">menu</span>
       <div className="menu">
         {props.numberElementsRender.map((el,index)=>
         <MainMenuItem 

@@ -5,34 +5,42 @@ import './ProfileContent.sass'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { reorder, getItemStyle, getListStyle } from './DragDrobSettings'
 import ProfileDropableElement from './ProfileDropableElement'
-import ProfileDropableContainer from './ProfileDropableContainer'
 
 class ProfileContentClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            container: [
-                { id: "container-1"},
-                { id: "container-2"},
-                { id: "container-3"},
-            ],
             droppable: [
-                { id: "droppable-1", content: "my first element droppable" },
-                { id: "droppable-2", content: "my second element droppable" },
-                { id: "droppable-3", content: "my first element2 droppable" },
-                { id: "droppable-4", content: "my second element2 droppable" },
+                {
+                id: "droppable-1", content: "my first element droppable", 
+                tags:["first", "second", "third", "fourth"] 
+                },
+                { id: "droppable-2", content: "my second element droppable", 
+                tags:["first", "second"]  },
+                { id: "droppable-3", content: "my first element2 droppable", 
+                tags:["first", "second", "third", "fourth"]  },
+                { id: "droppable-4", content: "my second element2 droppable", 
+                tags:[]  },
             ],
             droppable2: [
-                { id: "myItem-1", content: "my first element droppable2" },
-                { id: "myItem-2", content: "my second element droppable2" },
-                { id: "myItem-3", content: "my first element2 droppable2" },
-                { id: "myItem-4", content: "my second element2 droppable2" },
+                { id: "myItem-1", content: "my first element droppable2", 
+                tags:["first", "second", "third"]  },
+                { id: "myItem-2", content: "my second element droppable2", 
+                tags:[] },
+                { id: "myItem-3", content: "my first element2 droppable2", 
+                tags:["first"]  },
+                { id: "myItem-4", content: "my second element2 droppable2", 
+                tags:[]},
             ],
             droppable3: [
-                { id: "droppable3-1", content: "my first element droppable3" },
-                { id: "droppable3-2", content: "my second element droppable3" },
-                { id: "droppable3-3", content: "my first element2 droppable3" },
-                { id: "droppable3-4", content: "my second element2 droppable3" },
+                { id: "droppable3-1", content: "my first element droppable3", 
+                tags:["first", "second", "third", "fourth"]  },
+                { id: "droppable3-2", content: "my second element droppable3", 
+                tags:[] },
+                { id: "droppable3-3", content: "my first element2 droppable3", 
+                tags:["first", "second", "third", "fourth"]  },
+                { id: "droppable3-4", content: "my second element2 droppable3", 
+                tags:[] },
             ]
 
         }
@@ -44,9 +52,7 @@ class ProfileContentClass extends React.Component {
         if (!result.destination) {
             return;
         }
-        // if (result.source.droppableId !== result.destination.droppableId) {
-        //     return;
-        // }
+
         
         const items = reorder(
             result.source,
@@ -62,10 +68,9 @@ class ProfileContentClass extends React.Component {
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <div className="profile-drag-drop">
-                {/* <ProfileDropableContainer items={this.state.container} array={this.state.droppable}  id="container" /> */}
-                    <ProfileDropableElement title="First name" items={this.state.droppable} id="droppable" />
-                    <ProfileDropableElement title="Last name" items={this.state.droppable2} id="droppable2" />
-                    <ProfileDropableElement title="Age" items={this.state.droppable3} id="droppable3" />
+                    <ProfileDropableElement title="To do" items={this.state.droppable} id="droppable" />
+                    <ProfileDropableElement title="In progress" items={this.state.droppable2} id="droppable2" />
+                    <ProfileDropableElement title="Done" items={this.state.droppable3} id="droppable3" />
                 </div>
             </DragDropContext>
         );

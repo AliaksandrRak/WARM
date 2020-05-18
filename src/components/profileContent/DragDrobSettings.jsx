@@ -39,7 +39,8 @@ const getListStyle = (isDraggingOver) => ({
     position: "relative",
     padding: "0px 8px",
     paddingTop: "70px",
-    width: 250,
+    minWidth: 250,
+    maxWidth: 400,
     height: '100%',
 
 });
