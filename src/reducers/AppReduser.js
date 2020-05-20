@@ -2,6 +2,8 @@ import {
     SET_OPEN,
     SET_LOGIN,
     SET_OPEN_CARD,
+    SET_PROLILE,
+    IS_SENDING,
 
 } from './Action';
 
@@ -12,6 +14,8 @@ const initialState = {
     isOpenCard: false,
     companiesName: 'company',
     projectName: '',
+    isSending: false,
+    profile: {},
 };
 
 export const AppReduser = (state = initialState, action) => {
@@ -23,22 +27,43 @@ export const AppReduser = (state = initialState, action) => {
             newState.isOpen = !newState.isOpen;
             return newState;
         }
+
         case SET_LOGIN: {
             let newState = {
                 ...state
             };
-            debugger
+            
             newState.isLogIn = !newState.isLogIn;
             return newState;
         }
+
         case SET_OPEN_CARD: {
             let newState = {
                 ...state
             };
-            debugger
+            
             newState.isOpenCard = !newState.isOpenCard;
             return newState;
         }
+
+        case SET_PROLILE: {
+            let newState = {
+                ...state
+            };
+            newState.profile = action.profile;
+            let profile = JSON.stringify(action.profile)
+            localStorage.setItem("profile", profile)
+            return newState;
+        }
+
+        case IS_SENDING: {
+            let newState = {
+                ...state
+            };
+            newState.isSending = action.isSending;
+            return newState;
+        }
+
 
         default:
             return state;

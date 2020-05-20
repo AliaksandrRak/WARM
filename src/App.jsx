@@ -11,38 +11,29 @@ import ProfilePage from './components/ProfilePage'
 import './app.css'
 
 import { Provider } from 'react-redux';
-import { AppReduser } from './reducers/AppReduser'
-
-// import { connect } from 'react-redux';
-// const Header = connect(
-//   (state) => ({
-//     storeState: state.AppReduser,
-//     globalhistory: state.GlobalReduser,
-//     globalReduser: state.GlobalReduser,
-//   }),
-// )(HeaderClass);
-
-// export default Header;
-
-const redux = require('redux');
-
-const reducers = redux.combineReducers({
-  AppReduser,
-});
-
-const store = redux.createStore(reducers);
-
+import store from './reducers/Store'
+import {
+  set_login, 
+  set_profile,
+} from './reducers/Action';
+import Spinner from './components/Spinner';
 
 function App() {
 
   // const [isOpen, setOpen] = useState(false);
-
+  let profile = localStorage.getItem('profile');
+  profile = JSON.parse(profile);
+  
+  if (profile && profile.token) {
+    store.dispatch(set_login());
+    store.dispatch(set_profile(profile));
+  }
 
   return (
     
     <>
       <Provider store={store}>
-
+      <Spinner />
         <BrowserRouter >
           <Header />
           

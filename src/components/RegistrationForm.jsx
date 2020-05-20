@@ -3,21 +3,36 @@ import './RegistrationForm.sass';
 
 import { connect } from 'react-redux';
 import {
-  set_login
+  set_login, 
+  set_profile,
+  set_open,
+  is_sending,
 } from '../reducers/Action';
+import store from '../reducers/Store'
 
 
 function clickButton(firstName, lastName, email, password, companiesName, role) {
+  store.dispatch(is_sending(true));
   var body = `firstName=${firstName}&lastName=${lastName}&email=${email}&password=${password}&companiesName=${companiesName}&role=${role}`;
   const request = new XMLHttpRequest();
   request.open('POST', 'http://localhost:8080/KP_webServlet__server_war_exploded/registration', true);
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   request.send(body);
   request.onload = (res)=>{
-    debugger
-    let abc = request.response
+    
+    let response = {}
+    request.response.split(',').map((el)=>{
+      let array = el.split(':');
+      response[array[0]] = array[1]
+    });
+  
+    store.dispatch(set_login());
+    store.dispatch(set_profile(response));
+    store.dispatch(set_open());
+    store.dispatch(is_sending(false));
   };
 }
+
 
 function RegistrationFormFunction(props) {
   const [firstName, setFirstName] = useState('');
@@ -48,7 +63,7 @@ function RegistrationFormFunction(props) {
         <div className="changeForm" onClick={props.setIsLogIn}>
           LogIn
         </div>
-        <span className="btnSendForm" onClick={() => clickButton(firstName, lastName, email, password, companiesName, role)}>Registration</span>
+        <span className="btnSendForm" onClick={() => clickButton(firstName, lastName, email, password, companiesName, role, this)}>Registration</span>
       </div>
     </div>
   );

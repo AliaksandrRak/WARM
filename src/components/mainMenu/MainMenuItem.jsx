@@ -20,7 +20,7 @@ function MainMenuItemFunction(props) {
       </div>
       <div className="menu-item-content">
         {props.content.length > 0 && props.content.map((element,index) =>
-          <Link key={element.name+index} to={element.link}>{element.name}</Link>
+          <Link onClick={element.func && element.func} key={element.name+index} to={element.link}>{element.name}</Link>
         )}
       </div>
     </div>

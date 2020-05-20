@@ -1,0 +1,106 @@
+@import '../fonts';
+@import '../allColor';
+
+.addDeveloperForm
+    height: 100%;
+    width: 100%;
+    min-width: 17vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    .form-header
+        h3
+            font-family: $font_Baskerville;
+            font-size: 20px;
+            font-weight: 600;
+            color: $text-dark;
+
+    
+    .inputBlock
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 40%;
+
+        .inputRF
+            margin: 5px 0;
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid $gray;
+            transition: all .3s;
+            color: $text-dark;
+            font-size: 18px;
+            font-family: $font_Baskerville;
+
+            &:focus
+                outline: none;
+                box-shadow: 0px 0px 3px 1px $dark-gray;
+            
+        &-password
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            &-eye
+                width: 25px;
+                height: 25px;
+                display: block;
+                position: absolute;
+                right: 20px;
+                cursor: pointer;
+                transition: all .6s;
+                
+
+            .eye-view
+                background: url('../icon/view.svg') no-repeat;
+                background-size: 100% 100%;
+
+                &:hover
+                    background: url('../icon/view-hover.svg') no-repeat;
+                    background-size: 100% 100%;
+
+            .eye-hide
+                background: url('../icon/hide.svg') no-repeat;
+                background-size: 100% 100%;
+
+                &:hover
+                    background: url('../icon/hide-hover.svg') no-repeat;
+                    background-size: 100% 100%;
+
+    .submitBlock
+        display: flex;
+        width: 38%;
+        height: 100%
+        padding: 10px 0;
+        justify-content: flex-end
+        align-items: center;
+        font-family: $font_Baskerville;
+
+        .changeForm
+            cursor: pointer;
+            color: $light-blue;
+            transition: all .4s;
+
+            &:hover
+                color: $orange;
+        
+
+
+        .btnSendForm
+            background: $main-blue;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: $white;
+            cursor: pointer;
+            transition: all .8s;
+
+            &:hover
+                background: $main-dark-blue;
+                color: $orange
+                box-shadow: 0px 0px 3px 1px $dark-gray;

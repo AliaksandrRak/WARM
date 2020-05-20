@@ -1,3 +1,6 @@
+import store from './reducers/Store'
+import { set_login, set_profile } from './reducers/Action'
+
 const roleAdmin = [{
         label: {
             name: "Main",
@@ -13,8 +16,8 @@ const roleAdmin = [{
             },
             {
                 name: "LogOut",
-                func: "",
-                link:"#"
+                func: ()=>{localStorage.removeItem('profile'); store.dispatch(set_login()); store.dispatch(set_profile({}));},
+                link:"/"
             },
         ],
     },
@@ -127,8 +130,8 @@ const role1 = [{
             },
             {
                 name: "LogOut",
-                func: "",
-                link:"#"
+                func: ()=>{localStorage.removeItem('profile'); store.dispatch(set_login()); store.dispatch(set_profile({}));},
+                link:"/"
             },
         ],
     },
@@ -226,8 +229,8 @@ const role2 = [{
             },
             {
                 name: "LogOut",
-                func: "",
-                link:"#"
+                func: ()=>{localStorage.removeItem('profile'); store.dispatch(set_login()); store.dispatch(set_profile({}));},
+                link:"/"
             },
         ],
     },
@@ -331,8 +334,8 @@ const role3 = [{
             },
             {
                 name: "LogOut",
-                func: "",
-                link:"#"
+                func: ()=>{localStorage.removeItem('profile'); store.dispatch(set_login()); store.dispatch(set_profile({}));},
+                link:"/"
             },
         ],
     },
@@ -410,8 +413,8 @@ const role4 = [{
             },
             {
                 name: "LogOut",
-                func: "",
-                link:"#"
+                func: ()=>{localStorage.removeItem('profile'); store.dispatch(set_login()); store.dispatch(set_profile({}));},
+                link:"/"
             },
         ],
     },

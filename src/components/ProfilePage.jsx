@@ -15,6 +15,7 @@ import AddEquipmentForm from './AddEquipmentForm'
 import AddTaskForm from './AddTaskForm'
 import ProfileContent from './profileContent/ProfileContent'
 import Popup from './Popup'
+import EquipmentPage from './EquipmentPage';
 
 function ProfilePageFunction(props) {
 
@@ -41,11 +42,13 @@ function ProfilePageFunction(props) {
         <div className="profile-wrapper">
           <div className="profile-midle">
             <Switch>
+              
               <Route path='/profile/task/add'  component={AddTaskForm} />
               <Route path='/profile/task'  component={ProfileContent} />
               <Route path='/profile/developers/add'  component={AddDeveloperForm} />
               <Route path='/profile/project/add'  component={AddProjectForm} />
               <Route path='/profile/equipment/add'  component={AddEquipmentForm} />
+              <Route path='/profile/equipment'  component={EquipmentPage} />
             </Switch>
           </div>
         </div>
