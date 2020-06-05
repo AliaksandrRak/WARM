@@ -12,7 +12,7 @@ const initialState = {
     isOpen: false,
     isLogIn: false,
     isOpenCard: false,
-    companiesName: 'company',
+    companiesName: '',
     projectName: '',
     isSending: false,
     profile: {},
@@ -51,8 +51,9 @@ export const AppReduser = (state = initialState, action) => {
                 ...state
             };
             newState.profile = action.profile;
-            let profile = JSON.stringify(action.profile)
-            localStorage.setItem("profile", profile)
+            newState.companiesName = action.profile.company;
+            let profile = JSON.stringify(action.profile);
+            localStorage.setItem("profile", profile);
             return newState;
         }
 

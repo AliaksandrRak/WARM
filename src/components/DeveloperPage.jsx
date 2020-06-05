@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './EquipmentPage.sass';
+import './DeveloperPage.sass';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -16,11 +16,11 @@ import { is_sending } from '../reducers/Action'
 
 
 
-class EquipmentPageClass extends React.Component {
+class DeveloperPageClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      equipments: [],
+      developers: [],
     };
 
   }
@@ -31,7 +31,7 @@ class EquipmentPageClass extends React.Component {
     this.props.dispatch(is_sending(true));
     debugger
     const request = new XMLHttpRequest();
-    request.open('GET', `http://localhost:8080/KP_webServlet__server_war_exploded/addEquipment?company=${this.props.storeState.profile.company}&access=${this.props.storeState.profile.access}`, true);
+    request.open('GET', `http://localhost:8080/KP_webServlet__server_war_exploded/addPerson?company=${this.props.storeState.profile.company}&access=${this.props.storeState.profile.access}`, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send();
     request.onload = (res) => {
@@ -47,14 +47,14 @@ class EquipmentPageClass extends React.Component {
           
         });
         
-        if (response.uid) {
+        if (response.token) {
           responseArray.push(response);
         }
        
       });
 
       debugger
-      this.setState({equipments:responseArray});
+      this.setState({developers:responseArray});
       this.props.dispatch(is_sending(false));
 
     };
@@ -66,33 +66,35 @@ class EquipmentPageClass extends React.Component {
 
 
   render() {
-   
+
     return (
-      <div className="equipmentPage">
-        {this.state.equipments.length !==0 ?
+      <div className="developerPage">
+        {this.state.developers.length !==0 ?
  <TableContainer component={Paper}>
- <Table className="equipmentPage-table" aria-label="simple table">
+ <Table className="developerPage-table" aria-label="simple table">
    <TableHead>
      <TableRow>
-       <TableCell>{this.props.storeState.profile.company} Equipment</TableCell>
-       <TableCell align="right">Name</TableCell>
-       <TableCell align="right">Description</TableCell>
-       <TableCell align="right">Condition</TableCell>
-       <TableCell align="right">Quantity</TableCell>
-       <TableCell align="right">Cost</TableCell>
+       <TableCell>{this.props.storeState.profile.company} Developers</TableCell>
+       <TableCell align="right">First name</TableCell>
+       <TableCell align="right">Last name</TableCell>
+       <TableCell align="right">email</TableCell>
+       <TableCell align="right">skills</TableCell>
+       <TableCell align="right">specialization</TableCell>
+       <TableCell align="right">qualification</TableCell>
      </TableRow>
    </TableHead>
    <TableBody>
-     {this.state.equipments.map((row, index) => (
-       <TableRow key={row.uid}>
+     {this.state.developers.map((row, index) => (
+       <TableRow key={row.token}>
          <TableCell component="th" scope="row">
            {index+1}
          </TableCell>
-         <TableCell align="right">{row.equipment_name}</TableCell>
-         <TableCell align="right">{row.description}</TableCell>
-         <TableCell align="right">{row.equipment_condition}</TableCell>
-         <TableCell align="right">{row.quantity}</TableCell>
-         <TableCell align="right">{row.cost}</TableCell>
+         <TableCell align="right">{row.firstName}</TableCell>
+         <TableCell align="right">{row.lastName}</TableCell>
+         <TableCell align="right">{row.email}</TableCell>
+         <TableCell align="right">{row.skills}</TableCell>
+         <TableCell align="right">{row.specialization}</TableCell>
+         <TableCell align="right">{row.qualification}</TableCell>
        </TableRow>
      ))}
    </TableBody>
@@ -100,7 +102,7 @@ class EquipmentPageClass extends React.Component {
 </TableContainer>
 :
 <div>
-  <span>You don't have equipment :(</span>
+  <span>You don't have developers :(</span>
 </div>
         }
        
@@ -109,10 +111,10 @@ class EquipmentPageClass extends React.Component {
   }
 }
 
-const EquipmentPage = connect(
+const DeveloperPage = connect(
   (state) => ({
     storeState: state.AppReduser,
   }),
-)(EquipmentPageClass);
+)(DeveloperPageClass);
 
-export default EquipmentPage;
+export default DeveloperPage;

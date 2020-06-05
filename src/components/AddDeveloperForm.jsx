@@ -2,19 +2,10 @@ import React, { useState } from 'react';
 import './AddDeveloperForm.sass';
 
 import { connect } from 'react-redux';
+import { is_sending } from '../reducers/Action'
 
 
-function clickButton(firstName, lastName, email, skills, qualification, specialization, role, props) {
-  var body = `firstName=${firstName}&lastName=${lastName}&email=${email}&skills=${skills}&qualification=${qualification}&specialization=${specialization}&role=${role}&companiesName=${props.storeState.profile.company}`;
-  const request = new XMLHttpRequest();
-  request.open('POST', 'http://localhost:8080/KP_webServlet__server_war_exploded/addPerson', true);
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  request.send(body);
-  request.onload = (res)=>{
-    debugger
-    let abc = request.response
-  };
-}
+
 
 function AddDeveloperFormFunction(props) {
   const [firstName, setFirstName] = useState('');
@@ -24,6 +15,37 @@ function AddDeveloperFormFunction(props) {
   const [qualification, setQualification] = useState('');
   const [specialization, setSpecialization] = useState('');
   const [role, setRole] = useState('');
+
+  function clickButton(firstName, lastName, email, skills, qualification, specialization, role, props) {
+    props.dispatch(is_sending(true));
+    var body = `firstName=${firstName}&lastName=${lastName}&email=${email}&skills=${skills}&qualification=${qualification}&specialization=${specialization}&role=${role}&companiesName=${props.storeState.profile.company}`;
+    const request = new XMLHttpRequest();
+    request.open('POST', 'http://localhost:8080/KP_webServlet__server_war_exploded/addPerson', true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send(body);
+    request.onload = (res)=>{
+      let response = {}
+      request.response.split(',').map((el) => {
+        let array = el.split(':');
+        response[array[0]] = array[1]
+      });
+      debugger
+      if (response.value === "all good") {
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setSkills('');
+        setQualification('');
+        setSpecialization('');
+        setRole('');
+        props.dispatch(is_sending(false));
+      }
+    };
+    request.onerror= (error) => {
+      console.log("error", error);
+      props.dispatch(is_sending(false));
+    }
+  }
 
   return (
     <div className="addDeveloperForm">

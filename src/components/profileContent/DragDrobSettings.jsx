@@ -1,20 +1,26 @@
 
 const reorder = (source, destination, that) => {
-debugger
+
+        let state = {...that.state};
     if (source.droppableId === destination.droppableId) {   // inside array ?
         let result;
-        result = Array.from(that.state[source.droppableId]);
+        result = Array.from(state.projects[state.activeProject][source.droppableId]);
         const [removed] = result.splice(source.index, 1);
         result.splice(destination.index, 0, removed);
-        return { [source.droppableId]: result }
+        state.projects[state.activeProject][source.droppableId] = result
+        return { state }
+        // return { [source.droppableId]: result }
     }
     else {                                                  // outside array ?
         let sourceList, destinationList, result;
-        sourceList = Array.from(that.state[source.droppableId]);
-        destinationList = Array.from(that.state[destination.droppableId]);
+        sourceList = Array.from(state.projects[state.activeProject][source.droppableId]);
+        destinationList = Array.from(state.projects[state.activeProject][destination.droppableId]);
         const [removed] = sourceList.splice(source.index, 1);
         destinationList.splice(destination.index, 0, removed);
-        return { [source.droppableId]: sourceList, [destination.droppableId]: destinationList }
+        state.projects[state.activeProject][source.droppableId] = sourceList
+        state.projects[state.activeProject][destination.droppableId] = destinationList
+        return { state, uid: removed.uid, removed_status:destination.droppableId  }
+        // return { [source.droppableId]: sourceList, [destination.droppableId]: destinationList }
     }
 
 };

@@ -1,6 +1,39 @@
 @import '../../fonts';
 @import '../../allColor';
 
+
+.tasks
+    width: 100%
+    padding-bottom: 30px
+    box-shadow: 0px 0px 3px 1px $dark-gray
+
+    &-selectPproject 
+        width: 100%
+        height: 40px
+        background: $teal
+        margin-bottom: 40px
+        display: flex
+
+        &-item
+            display: flex
+            align-items: center
+            height: 100%
+            width: max-content
+            color: $white
+            font-family: $font_Oswald
+            padding: 0 10px
+            cursor: pointer
+            transition: all .6s
+
+            &:hover
+                
+                background: $yellow
+
+        &-item.active
+            background: $yellow
+            
+
+
 .profile-drag-drop
     display: flex;
     justify-content: space-around;
@@ -29,6 +62,7 @@
 
 
 .card 
+    position: relative
     
     
     &-title 
@@ -36,7 +70,7 @@
         color: $dark-gray;
         font-family: $font_Oswald;
         font-weight: 600;
-        padding-bottom: 10px;
+        padding: 15px 0;
         cursor: pointer;
         transition: all .3s;
 
@@ -45,11 +79,11 @@
         
     &-tags
         display: flex;
-        flex-wrap: wrap;
-        width: 80%;
+        justify-content: flex-end
+        width: 100%;
 
     &-tag 
-        background: $light-blue;
+        // background: $light-blue;
         padding: 5px 10px;
         width: max-content;
         border-radius: 10px;
@@ -57,11 +91,48 @@
         color: $white;
         font-family: $font_Oswald;
         font-size: 14px;
+        font-weight: 700
         cursor: pointer;
         transition: all .3s;
-        
-        &:hover
-            background: $yellow;
-        
+
+    &-description
+        width: 100%
+
+        span
+            display: block
+            font-size: 16px
+            color: $dark-gray;
+            font-family: $font_Oswald;
+            font-weight: 600;
+            padding-bottom: 5px;
+            
+            width: 100%
+        p
+            border-bottom: 1px solid $gray
+            font-size: 16px
+            color: $dark-gray;
+            font-family: $font_Baskerville;
+
+    &-developers
+        position: absolute
+        top: 10px
+        right: 10px
+        font-size: 16px
+        color: $dark-gray;
+        font-family: $font_Oswald;
+        font-weight: 600;
+    
+    &-deadline
+        display: flex
+        width: 100%
+
+        span
+            display: block
+            font-size: 16px
+            color: $dark-gray;
+            font-family: $font_Oswald;
+            font-weight: 600;
+            padding-bottom: 5px;
+
     
 

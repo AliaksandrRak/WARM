@@ -4,7 +4,7 @@ import './ProfileContent.sass'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { reorder, getItemStyle, getListStyle } from './DragDrobSettings';
-import {set_open_card} from '../../reducers/Action'
+import { set_open_card } from '../../reducers/Action'
 
 function ProfileDropableElementFunction(props) {
 
@@ -21,8 +21,8 @@ function ProfileDropableElementFunction(props) {
                     </div>
                     {props.items.map((item, index) => (
                         <Draggable
-                            key={item.id}
-                            draggableId={item.id}
+                            key={item.uid}
+                            draggableId={item.uid}
                             index={index}
                         >
                             {(provided, snapshot) => (
@@ -37,18 +37,31 @@ function ProfileDropableElementFunction(props) {
                                         )}
                                     >
                                         <div className="card-title">
-                                            <span>{item.content}</span>
+                                            <span>{item.taskName}</span>
                                         </div>
 
                                         <div className="card-tags">
-                                            {item.tags.map((tag, number) =>
+                                            <div className="card-tag" style={{background: item.urgency === "high" ? "#FF0000":item.urgency === "medium"? "#FFD700" : "#a3a1a1" }}>
+                                                <span>{item.urgency}</span>
+                                            </div>
+                                            {/* {item.tags.map((tag, number) =>
                                             number < 3 &&
                                                 <div className="card-tag">
                                                     <span>{tag}</span>
                                                 </div>
-                                            )}
+                                            )} */}
                                         </div>
-
+                                        <div className="card-description">
+                                            <span>Description:</span>
+                                            <p>{item.descriptions}</p>
+                                        </div>
+                                        <div className="card-developers">
+                                            {item.developers}
+                                        </div>
+                                        <div className="card-deadline">
+                                            <span>Deadline: </span>
+                                            <span>{item.deadline}</span>
+                                        </div>
                                     </div>
                                     {provided.placeholder}
                                 </div>
